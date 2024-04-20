@@ -22,4 +22,4 @@ app.register_blueprint(Registration.Registration,url_prefix='/rcadmin/registrati
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

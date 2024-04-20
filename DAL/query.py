@@ -41,8 +41,8 @@ deletedepartment = """update [PROD].[Department] set isactive = 0  where id = {0
 
 ###############Employee
 createEmployee = """DECLARE @RegId INT;
-insert into [PROD].[Registration](superid,Badge,UserName,DateOfBirth,Designation,CardId,Mobile,RFID,DateOfBirth,Gender)
-values({0},{1},'{2}','{3}','{4}',{5},'{6}','{7}','{8}',{9})
+insert into [PROD].[Registration](superid,Badge,UserName,DateOfBirth,Designation,CardId,Mobile,RFID,Gender)
+values({0},{1},'{2}','{3}','{4}',{5},'{6}','{7}',{9})
 
 SET @RegId = SCOPE_IDENTITY()
 
@@ -53,7 +53,7 @@ insert into [PROD].[EmpDept] (regid,deptid)
 values(@RegId ,{11})"""
 
 updateEmployee = """update [PROD].[Registration] set superid = {0},Badge = {1},UserName = '{2}',DateOfBirth = '{3}',Designation = '{4}'
-,CardId = {5},Mobile = '{6}',RFID = '{7}',DateOfBirth = '{8}',Gender = {9} where id = {12};
+,CardId = {5},Mobile = '{6}',RFID = '{7}',Gender = {9} where id = {12};
 
 update  [PROD].[EmpBranch]set BranchId = {10} where RegId ={12};
 update [PROD].[EmpDept] set deptid = {11} where regid = {12};"""
@@ -62,13 +62,13 @@ deleteEmployee = """update [PROD].[Registration] set IsActive = 0 where id = {0}
 
 getEmployee = """
 select r.id regid,r.superid,r.Badge,r.UserName,r.DateOfBirth,r.Designation,r.CardId,r.Mobile,r.RFID,r.DateOfBirth,r.Gender,emp.branchid,
-b.Name branchname ,b.Code branchcode,ed.DeptId Departmentid ,d.Name Departmentname ,d.Code Departmentcode
+b.Name branchname ,b.Code branchcode,ed.DeptId Departmentid ,d.Name Departmentname ,d.Code Departmentcode,r.isactive
 from [PROD].[Registration] r
 inner join [PROD].[EmpBranch] emp on emp.RegId = r.id
 inner join [PROD].[Branches] b on b.id = emp.BranchId
 inner join [PROD].[EmpDept] ed on ed.RegId = r.id
 inner join [PROD].[Department] d on d.id = ed.deptid
-where r.id = {0} and r.isactive = 1"""
+where r.id = {0} """
 
 ###########################RegBankDetails
 createRegBankDetails = """insert into [PROD].[RegBankDetails](SuperId,RegId,AccountNo,AccountHoldersName,BankName,BankBranch,IfscCode)

@@ -12,7 +12,7 @@ class EmployeeBL:
         try:
             sqlquery = query.createEmployee.format(data['superid'],data['badge'],data['username'],data['dateofbirth']
                                                   ,data['designation'],data['cardid'],data['mobile'],data['rfid']
-                                                   ,data['dateofbirth'],data['gender'],data['branchid'],data['deptid'])
+                                                   ,data['dateofbirth'],data['gender'],data['branchid'],data['departmentid'])
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.update(sqlquery)
             if rows < 1:
@@ -26,7 +26,7 @@ class EmployeeBL:
         try:
             sqlquery = query.updateEmployee.format(data['superid'],data['badge'],data['username'],data['dateofbirth']
                                                   ,data['designation'],data['cardid'],data['mobile'],data['rfid']
-                                                   ,data['dateofbirth'],data['gender'],data['branchid'],data['deptid'],data['regid'])
+                                                   ,data['dateofbirth'],data['gender'],data['branchid'],data['departmentid'],data['regid'])
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.update(sqlquery)
             if rows < 1:
@@ -51,6 +51,7 @@ class EmployeeBL:
     def dbgetEmployee(self,regid):
         try:
             sqlquery = query.getEmployee.format(regid)
+            print(sqlquery)
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.queryall(sqlquery)
             if rows == None or len(rows) == 0:

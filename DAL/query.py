@@ -65,10 +65,10 @@ getEmployee = """
 select r.id regid,r.superid,r.Badge,r.UserName,r.DateOfBirth,r.Designation,r.CardId,r.Mobile,r.RFID,r.DateOfBirth,r.Gender,emp.branchid,
 b.Name branchname ,b.Code branchcode,ed.DeptId Departmentid ,d.Name Departmentname ,d.Code Departmentcode,r.isactive
 from [PROD].[Registration] r
-inner join [PROD].[EmpBranch] emp on emp.RegId = r.id
-inner join [PROD].[Branches] b on b.id = emp.BranchId
-inner join [PROD].[EmpDept] ed on ed.RegId = r.id
-inner join [PROD].[Department] d on d.id = ed.deptid
+left join [PROD].[EmpBranch] emp on emp.RegId = r.id
+left join [PROD].[Branches] b on b.id = emp.BranchId
+left join [PROD].[EmpDept] ed on ed.RegId = r.id
+left join [PROD].[Department] d on d.id = ed.deptid
 where r.id = {0} """
 
 ###########################RegBankDetails

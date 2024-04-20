@@ -14,7 +14,8 @@ WHERE Id = {5};"""
 deleteHoliday = """update [PROD].[Holidays] set isactive  = 0 where id = {0}"""
 
 getHolidays = """select id holidayid,SuperId, HolidayDt, UpdatedBy, UpdatedOn, Reason, Optional from [PROD].[Holidays]
- where superid = {0} and isactive = 1 order by HolidayDt"""
+ where superid = {0} and isactive = 1 and HolidayDt between '{1}' and '{2}'
+ order by HolidayDt"""
 
 
 

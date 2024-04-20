@@ -47,10 +47,10 @@ class HolidaysBL:
         except Exception as e:
             return cutil.SuccessResult(str(e)).__dict__
 
-    def dbgetHolidays(self,superid):
+    def dbgetHolidays(self,superid,start_date,end_date):
         try:
-            sqlquery = query.getHolidays.format(superid)
-            print(sqlquery)
+            sqlquery = query.getHolidays.format(superid,start_date,end_date)
+
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.queryall(sqlquery)
             if rows == None or len(rows) == 0:

@@ -13,7 +13,7 @@ def ServiceHealth():
     return jsonify('RollCall Admin Service Is Up')
 
 
-
+#app.register_blueprint(Holidays.Holidays,url_prefix='/rcadmin/signin')
 app.register_blueprint(Holidays.Holidays,url_prefix='/rcadmin/holidays')
 app.register_blueprint(Reports.Reports,url_prefix='/rcadmin/reports')
 app.register_blueprint(Branch.branch,url_prefix='/rcadmin/branch')

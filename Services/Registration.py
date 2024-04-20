@@ -5,7 +5,7 @@ from HelperClass.commonutil import commonutil
 Registration = Blueprint('Registration',__name__)
 
 @Registration.route('/createEmployee',methods = ['Post'])
-def createHolidays():
+def createEmployee():
     data = request.json
     regbl = dbRegistration.EmployeeBL()
     result = regbl.dbcreateEmployee(data)
@@ -34,7 +34,7 @@ def getEmployee():
     return jsonify(result)
 
 @Registration.route('/createRegBankDetails',methods = ['Post'])
-def createHolidays():
+def createRegBankDetails():
     data = request.json
     regbl = dbRegistration.RegBankDetailsBL()
     result = regbl.dbcreateRegBankDetails(data)

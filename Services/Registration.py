@@ -28,7 +28,14 @@ def deleteEmployee():
 
 @Registration.route('/getEmployee')
 def getEmployee():
-    regid = request.args.get('regid')
+    superid = request.args.get('superid')
     regbl = dbRegistration.EmployeeBL()
-    result = regbl.dbgetEmployee(regid)
+    result = regbl.dbgetEmployee(superid)
+    return jsonify(result)
+
+@Registration.route('/createRegBankDetails',methods = ['Post'])
+def createHolidays():
+    data = request.json
+    regbl = dbRegistration.RegBankDetailsBL()
+    result = regbl.dbcreateRegBankDetails(data)
     return jsonify(result)

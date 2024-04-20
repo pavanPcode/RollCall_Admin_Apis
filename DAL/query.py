@@ -69,7 +69,7 @@ left join [PROD].[EmpBranch] emp on emp.RegId = r.id
 left join [PROD].[Branches] b on b.id = emp.BranchId
 left join [PROD].[EmpDept] ed on ed.RegId = r.id
 left join [PROD].[Department] d on d.id = ed.deptid
-where r.id = {0} """
+where r.superid = {0} and r.isactive = 1 order by r.id desc"""
 
 ###########################RegBankDetails
 createRegBankDetails = """insert into [PROD].[RegBankDetails](SuperId,RegId,AccountNo,AccountHoldersName,BankName,BankBranch,IfscCode)
@@ -136,7 +136,7 @@ VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
 EXEC [PROD].[SP_RollCallGenerateReport] @Filter;
 """
 
-Loginquarry = """select u.SuperId,u.BranchId,u.FirstName,u.LastName,u.Mobile,u.Address,u.EmailId,u.RoleId,u.IsActive,r.RoleName,r.RoleLevel
+Loginquarry = """select u.id userid,u.SuperId,u.BranchId,u.FirstName,u.LastName,u.Mobile,u.Address,u.EmailId,u.RoleId,u.IsActive,r.RoleName,r.RoleLevel
 from [PROD].[Users] u
 inner join [PROD].[Roles] r on r.id = u.RoleId
 where u.IsActive = 1 and u.LoginName = '{0}' and PasswordHash = '{1}'"""

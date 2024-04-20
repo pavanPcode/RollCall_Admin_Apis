@@ -48,9 +48,9 @@ class EmployeeBL:
         except Exception as e:
             return cutil.SuccessResult(str(e)).__dict__
 
-    def dbgetEmployee(self,regid):
+    def dbgetEmployee(self,superid):
         try:
-            sqlquery = query.getEmployee.format(regid)
+            sqlquery = query.getEmployee.format(superid)
             print(sqlquery)
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.queryall(sqlquery)

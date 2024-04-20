@@ -10,7 +10,7 @@ CORS(app)
 
 @app.route('/')
 def ServiceHealth():
-    return jsonify('Service Is Up')
+    return jsonify('RollCall Admin Service Is Up')
 
 
 

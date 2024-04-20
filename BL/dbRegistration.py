@@ -68,7 +68,8 @@ class RegBankDetailsBL:
     def dbcreateRegBankDetails(self,data):
         try:
             sqlquery = query.createRegBankDetails.format(data['superid'],data['regid'],data['accountNo'],data['accountholdersname']
-                                                  ,data['bankName'],data['bankbranch'],data['ifsccode'])
+                                                  ,data['bankName'],data['bankbranch'],data['ifsccode'],data['createdby'])
+
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.update(sqlquery)
             if rows < 1:

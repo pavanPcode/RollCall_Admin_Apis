@@ -72,8 +72,8 @@ left join [PROD].[Department] d on d.id = ed.deptid
 where r.superid = {0} and r.isactive = 1 order by r.id desc"""
 
 ###########################RegBankDetails
-createRegBankDetails = """insert into [PROD].[RegBankDetails](SuperId,RegId,AccountNo,AccountHoldersName,BankName,BankBranch,IfscCode)
-values({0},{1},'{2}','{3}','{4}','{5}','{6}')"""
+createRegBankDetails = """insert into [PROD].[RegBankDetails](SuperId,RegId,AccountNo,AccountHoldersName,BankName,BankBranch,IfscCode,createdby)
+values({0},{1},'{2}','{3}','{4}','{5}','{6}',{7})"""
 
 updateRegBankDetails = """update [PROD].[RegBankDetails] set AccountNo = '{0}' ,AccountHoldersName ='{1}' ,BankName = '{2}',
 BankBranch = '{3}',IfscCode = '{4}' where RegId = {5}"""

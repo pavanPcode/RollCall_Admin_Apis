@@ -39,3 +39,10 @@ def createRegBankDetails():
     regbl = dbRegistration.RegBankDetailsBL()
     result = regbl.dbcreateRegBankDetails(data)
     return jsonify(result)
+
+@Registration.route('/updateRegBankDetails',methods = ['Post'])
+def updateRegBankDetails():
+    data = request.json
+    regbl = dbRegistration.RegBankDetailsBL()
+    result = regbl.dbupdateRegBankDetails(data)
+    return jsonify(result)

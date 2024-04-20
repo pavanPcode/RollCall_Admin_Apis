@@ -3,7 +3,7 @@ from flask_cors import CORS
 import requests
 from datetime import datetime
 import logging
-from Services import Holidays,Reports,Branch,Department,Registration
+from Services import Holidays,Reports,Branch,Department,Registration,signin
 app = Flask(__name__)
 
 CORS(app)
@@ -12,8 +12,7 @@ CORS(app)
 def ServiceHealth():
     return jsonify('RollCall Admin Service Is Up')
 
-
-#app.register_blueprint(Holidays.Holidays,url_prefix='/rcadmin/signin')
+app.register_blueprint(signin.Signin,url_prefix='/rcadmin/signin')
 app.register_blueprint(Holidays.Holidays,url_prefix='/rcadmin/holidays')
 app.register_blueprint(Reports.Reports,url_prefix='/rcadmin/reports')
 app.register_blueprint(Branch.branch,url_prefix='/rcadmin/branch')

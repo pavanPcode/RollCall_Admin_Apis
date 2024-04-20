@@ -135,3 +135,8 @@ INSERT INTO @Filter (SuperId, ReportId, StartDate, EndDate, RegId, DeptId, Atten
 VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
 EXEC [PROD].[SP_RollCallGenerateReport] @Filter;
 """
+
+Loginquarry = """select u.SuperId,u.BranchId,u.FirstName,u.LastName,u.Mobile,u.Address,u.EmailId,u.RoleId,u.IsActive,r.RoleName,r.RoleLevel
+from [PROD].[Users] u
+inner join [PROD].[Roles] r on r.id = u.RoleId
+where u.IsActive = 1 and u.LoginName = '{0}' and PasswordHash = '{1}'"""

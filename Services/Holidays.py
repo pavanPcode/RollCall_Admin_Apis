@@ -4,11 +4,11 @@ from HelperClass.commonutil import commonutil
 
 Holidays = Blueprint('Holidays',__name__)
 
-@Holidays.route('/createproject',methods = ['Post'])
-def createproject():
+@Holidays.route('/createHolidays',methods = ['Post'])
+def createHolidays():
     data = request.json
     holbl = dbHolidays.HolidaysBL()
-    result = holbl.dbcreateproject(data)
+    result = holbl.dbcreateHolidays(data)
     return jsonify(result)
 
 @Holidays.route('/updateholiday',methods = ['Post'])

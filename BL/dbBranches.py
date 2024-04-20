@@ -11,8 +11,7 @@ class BranchesBL:
         self.dbname = "premiumdb"
     def dbcreateBranch(self,data):
         try:
-            sqlquery = query.createbranch.format(data['superid'],data['holidaydt'],data['reason'],data['optional']
-                                                  ,data['createdby'])
+            sqlquery = query.createbranch.format(data['superid'],data['name'],data['code'],data['createdby'])
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.update(sqlquery)
             if rows < 1:
@@ -24,8 +23,7 @@ class BranchesBL:
 
     def dbupdateBranch(self,data):
         try:
-            sqlquery = query.updatebranch.format(data['superid'],data['holidaydt'],data['reason'],data['optional']
-                                                  ,data['createdby'],data['branchid'])
+            sqlquery = query.updatebranch.format(data['superid'],data['name'],data['code'],data['createdby'],data['branchid'])
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.update(sqlquery)
             if rows < 1:

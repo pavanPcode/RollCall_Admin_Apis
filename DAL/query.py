@@ -4,7 +4,7 @@ createHoliday = """INSERT INTO [PROD].[Holidays] (SuperId, HolidayDt, UpdatedBy,
 VALUES ({0}, '{1}', {4}, DATEADD(MINUTE, 330, GETUTCDATE()), '{2}', {3} );"""
 
 updateHoliday = """UPDATE [PROD].[Holidays]
-SET superid = {0},HolidayDt = {1},
+SET superid = {0},HolidayDt = '{1}',
     UpdatedBy = {4},
     UpdatedOn =  DATEADD(MINUTE, 330, GETUTCDATE()),
     Reason = '{2}',
@@ -14,7 +14,7 @@ WHERE Id = {5};"""
 deleteHoliday = """update [PROD].[Holidays] set isactive  = 0 where id = {0}"""
 
 getHolidays = """select id holidayid,SuperId, HolidayDt, UpdatedBy, UpdatedOn, Reason, Optional from [PROD].[Holidays]
- where superid = {0} order by HolidayDt"""
+ where superid = {0} and isactive = 1 order by HolidayDt"""
 
 
 
@@ -25,7 +25,7 @@ values({0},'{1}','{2}',{3},DATEADD(MINUTE, 330, GETUTCDATE()),1) """
 updatebranch = """update [PROD].[Branches] set superid = {0},name = '{1}',code = '{2}' ,UpdatedBy ={3} ,
 UpdatedOn = DATEADD(MINUTE, 330, GETUTCDATE()) where id = {4} """
 
-deletebranch = """update [PROD].[Branches] set isactive = 0,UpdatedBy = ,UpdatedOn = DATEADD(MINUTE, 330, GETUTCDATE()) where id = {0}"""
+deletebranch = """update [PROD].[Branches] set isactive = 0,UpdatedOn = DATEADD(MINUTE, 330, GETUTCDATE()) where id = {0}"""
 
 getbranches = """select id branchid,SuperId,Name,code from [PROD].[Branches] where SuperId = {0} and IsActive = 1 """
 

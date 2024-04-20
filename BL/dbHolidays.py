@@ -11,7 +11,8 @@ class HolidaysBL:
         self.dbname = "premiumdb"
     def dbcreateHolidays(self,data):
         try:
-            sqlquery = query.createHoliday.format(data['superid'],data['name'],data['code'],data['createdby'])
+            sqlquery = query.createHoliday.format(data['superid'],data['holidaydt'],data['reason'],data['optional']
+                                                  ,data['createdby'])
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.update(sqlquery)
             if rows < 1:

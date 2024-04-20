@@ -24,6 +24,7 @@ class DepartmentBL:
     def dbupdatedepartment(self,data):
         try:
             sqlquery = query.updatedepartment.format(data['superid'],data['name'],data['code'],data['departmentid'])
+            print(sqlquery)
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.update(sqlquery)
             if rows < 1:

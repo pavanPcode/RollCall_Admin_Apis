@@ -29,17 +29,17 @@ deletebranch = """update [PROD].[Branches] set isactive = 0,UpdatedOn = DATEADD(
 
 getbranches = """select id branchid,SuperId,Name,code from [PROD].[Branches] where SuperId = {0} and IsActive = 1 """
 
-
+########################department
 getdepartment = """select id departmentid,SuperId,Name,code from [PROD].[Department] where isactive = 1 and SuperId = {0}"""
 
 createdepartment = """insert into [PROD].[Department] (SuperId,name,code,IsActive)
 values({0},'{1}','{2}',1) """
 
-updatedepartment = """update [PROD].[Department] set SuperId = {0},Name = '{1}' ,Code = '{2}' where id =  {0}"""
+updatedepartment = """update [PROD].[Department] set SuperId = {0},Name = '{1}' ,Code = '{2}' where id =  {3}"""
 
-deletedepartment = """update [PROD].[Department] isactive = 0  where id = {0}"""
+deletedepartment = """update [PROD].[Department] set isactive = 0  where id = {0}"""
 
-
+###############Employee
 createEmployee = """DECLARE @RegId INT;
 insert into [PROD].[Registration](superid,Badge,UserName,DateOfBirth,Designation,CardId,Mobile,RFID,DateOfBirth,Gender)
 values({0},{1},'{2}','{3}','{4}',{5},'{6}','{7}','{8}',{9})

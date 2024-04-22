@@ -48,10 +48,9 @@ class EmployeeBL:
         except Exception as e:
             return cutil.SuccessResult(str(e)).__dict__
 
-    def dbgetEmployee(self,superid):
+    def dbgetEmployee(self,superid,departmentid,regid):
         try:
-            sqlquery = query.getEmployee.format(superid)
-            print(sqlquery)
+            sqlquery = query.getEmployee.format(superid,departmentid,regid)
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.queryall(sqlquery)
             if rows == None or len(rows) == 0:
@@ -126,7 +125,7 @@ class RegProofsBL:
         try:
             sqlquery = query.createRegProofs.format(data['superid'],data['regid'],data['pan'],data['uan']
                                                   ,data['adhaar'],data['esi'],data['pf'],data['epfstart'],data["voterid"],data['createdby'])
-            print(sqlquery)
+
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.update(sqlquery)
             if rows < 1:
@@ -140,7 +139,7 @@ class RegProofsBL:
         try:
             sqlquery = query.updateRegProofs.format(data['pan'],data['uan']
                                                   ,data['adhaar'],data['esi'],data['pf'],data['epfstart'],data["voterid"],data['regid'],data['createdby'])
-            print(sqlquery)
+
 
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.update(sqlquery)
@@ -154,7 +153,6 @@ class RegProofsBL:
     def dbgetRegProofs(self,regid):
         try:
             sqlquery = query.getRegProofs.format(regid)
-            print(sqlquery)
 
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.queryall(sqlquery)
@@ -166,3 +164,52 @@ class RegProofsBL:
         except Exception as e:
             return cutil.SuccessResult(str(e)).__dict__
 
+
+
+
+class RegDetailsBL:
+    cutil = commonutil.commonutil()
+    def __init__(self):
+        self.dbname = "premiumdb"
+    def dbcreateRegDetails(self,data):
+        try:
+            sqlquery = query.createRegDetails.format(data['superid'],data['regid'],data['emailid'],data['emergencycontactno1'],data['emergencycontactno2']
+                                                  ,data['currentaddress'],data['permanentaddress'])
+
+            sqlobj = sqlhelper.sqlhelper(self.dbname)
+            rows = sqlobj.update(sqlquery)
+            if rows < 1:
+                return cutil.InvalidResult(' Invalid').__dict__
+            else:
+                return cutil.SuccessResult('RegDetails created Successfully').__dict__
+        except Exception as e:
+            return cutil.SuccessResult(str(e)).__dict__
+
+    def dbupdateRegDetails(self,data):
+        try:
+            sqlquery = query.updateRegDetails.format(data['emailid'],data['emergencycontactno1'],data['emergencycontactno2']
+                                                  ,data['currentaddress'],data['permanentaddress'],data['regid'])
+
+
+            sqlobj = sqlhelper.sqlhelper(self.dbname)
+            rows = sqlobj.update(sqlquery)
+            if rows < 1:
+                return cutil.InvalidResult(' Invalid').__dict__
+            else:
+                return cutil.SuccessResult('RegDetails Updated Successfully').__dict__
+        except Exception as e:
+            return cutil.SuccessResult(str(e)).__dict__
+
+    def dbgetRegDetails(self,regid):
+        try:
+            sqlquery = query.getRegDetails.format(regid)
+
+            sqlobj = sqlhelper.sqlhelper(self.dbname)
+            rows = sqlobj.queryall(sqlquery)
+
+            if rows == None or len(rows) == 0:
+                return cutil.InvalidResult('No data available').__dict__
+            resultmodel =  dataoutputmodel.DataOutputModel('getRegDetails',rows,True)
+            return resultmodel.__dict__
+        except Exception as e:
+            return cutil.SuccessResult(str(e)).__dict__

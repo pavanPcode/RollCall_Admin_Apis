@@ -29,8 +29,19 @@ def deleteEmployee():
 @Registration.route('/getEmployee')
 def getEmployee():
     superid = request.args.get('superid')
+    departmentid = request.args.get('departmentid')
+    regid = request.args.get('regid')
+
+    if superid == None:
+        cut = commonutil()
+        return jsonify(cut.InvalidResult('required superid parameter').__dict__)
+    if departmentid == None or departmentid == '':
+        departmentid = 'ed.DeptId'
+    if regid == None or regid == '':
+        regid = 'r.id'
+
     regbl = dbRegistration.EmployeeBL()
-    result = regbl.dbgetEmployee(superid)
+    result = regbl.dbgetEmployee(superid,departmentid,regid)
     return jsonify(result)
 
 @Registration.route('/createRegBankDetails',methods = ['Post'])
@@ -83,3 +94,18 @@ def getRegProofs():
     result = regbl.dbgetRegProofs(regid)
     return jsonify(result)
 
+
+@Registration.route('/createRegDetails',methods = ['Post'])
+def createRegDetails():
+    data = request.json
+    regbl = dbRegistration.RegDetailsBL()
+    result = regbl.dbcreateRegDetails(data)
+    return jsonify(result)
+
+
+@Registration.route('/updateRegDetails',methods = ['Post'])
+def updateRegDetails():
+    data = request.json
+    regbl = dbRegistration.RegDetailsBL()
+    result = regbl.dbupdateRegDetails(data)
+    return jsonify(result)

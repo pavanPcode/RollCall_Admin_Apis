@@ -69,7 +69,9 @@ left join [PROD].[EmpBranch] emp on emp.RegId = r.id
 left join [PROD].[Branches] b on b.id = emp.BranchId
 left join [PROD].[EmpDept] ed on ed.RegId = r.id
 left join [PROD].[Department] d on d.id = ed.deptid
-where r.superid = {0} and r.isactive = 1 order by r.id desc"""
+where r.superid = {0} and r.isactive = 1 
+and ed.DeptId = {1} and r.id = {2}
+order by r.id desc"""
 
 ###########################RegBankDetails
 createRegBankDetails = """insert into [PROD].[RegBankDetails](SuperId,RegId,AccountNo,AccountHoldersName,BankName,BankBranch,IfscCode,createdby)

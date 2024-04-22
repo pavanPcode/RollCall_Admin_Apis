@@ -58,3 +58,16 @@ class DepartmentBL:
             return resultmodel.__dict__
         except Exception as e:
             return cutil.SuccessResult(str(e)).__dict__
+
+    def dbgetEmpByDept(self,departmentid):
+        try:
+            sqlquery = query.getEmpByDept.format(departmentid)
+            print(sqlquery)
+            sqlobj = sqlhelper.sqlhelper(self.dbname)
+            rows = sqlobj.queryall(sqlquery)
+            if rows == None or len(rows) == 0:
+                return cutil.InvalidResult('No data available').__dict__
+            resultmodel =  dataoutputmodel.DataOutputModel('getEmpByDept',rows,True)
+            return resultmodel.__dict__
+        except Exception as e:
+            return cutil.SuccessResult(str(e)).__dict__

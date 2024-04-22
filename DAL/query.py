@@ -33,6 +33,10 @@ getbranches = """select id branchid,SuperId,Name,code from [PROD].[Branches] whe
 ########################department
 getdepartment = """select id departmentid,SuperId,Name,code from [PROD].[Department] where isactive = 1 and SuperId = {0}"""
 
+getEmpByDept = """select r.id regid,r.UserName,r.Badge,r.Gender,r.Designation from [PROD].[EmpDept] ed
+inner join [PROD].[Registration] r on r.id = ed.RegId
+where ed.IsActive = 1 and ed.DeptId = {0}"""
+
 createdepartment = """insert into [PROD].[Department] (SuperId,name,code,IsActive)
 values({0},'{1}','{2}',1) """
 
@@ -136,7 +140,7 @@ where IsActive = 1 and RegId = {0} """
 
 ################
 resignEmp = """insert into [PROD].[RegTermination](regid,TerminationDt,Reason,IsActive,UpdatedOn,UpdatedBy)
-values(511,'2024-01-27','test',1,'2024-04-02',10);
+values({0},'{1}','{2}',1,DATEADD(MINUTE, 330, GETUTCDATE()),{3});
 update [PROD].[Registration] set IsActive = 0 where id = {0}"""
 
 rejoinEmp = """update [PROD].[Registration] set IsActive = 1 where id = {0}
@@ -145,9 +149,11 @@ update [PROD].[RegTermination] set IsActive = 0 where regid = {0}"""
 Terminatedlist = """select rt.regid,rt.TerminationDt,rt.Reason,rt.IsActive,rt.UpdatedOn,rt.UpdatedBy,r.Badge BIOMetricId,r.Designation,r.UserName
 from [PROD].[RegTermination] rt
 inner join [PROD].[Registration] r on r.id = rt.RegId
-where rt.IsActive = 1 and rt.RegId = {0}"""
+where rt.IsActive = 1 and r.superid = {0} order  by rt.id desc"""
 
 
+
+##############################Reports ############
 getReports = """SET NOCOUNT ON
 DECLARE @Filter [PROD].[Type_RollCallReportFilter]
 INSERT INTO @Filter (SuperId, ReportId, StartDate, EndDate, RegId, DeptId, AttendanceStatus, ShiftId, BranchId)
@@ -155,7 +161,13 @@ VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
 EXEC [PROD].[SP_RollCallGenerateReport] @Filter;
 """
 
+############################login #######################
 Loginquarry = """select u.id userid,u.SuperId,u.BranchId,u.FirstName,u.LastName,u.Mobile,u.Address,u.EmailId,u.RoleId,u.IsActive,r.RoleName,r.RoleLevel
 from [PROD].[Users] u
 inner join [PROD].[Roles] r on r.id = u.RoleId
 where u.IsActive = 1 and u.LoginName = '{0}' and PasswordHash = '{1}'"""
+
+#########################
+
+getShifts = """select Name,StartTime,EndTime from [PROD].[Shifts] where SuperId = {0} and isactive = 1"""
+

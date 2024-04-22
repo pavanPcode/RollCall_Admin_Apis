@@ -109,3 +109,10 @@ def updateRegDetails():
     regbl = dbRegistration.RegDetailsBL()
     result = regbl.dbupdateRegDetails(data)
     return jsonify(result)
+
+@Registration.route('/getRegDetails')
+def getRegDetails():
+    regid = request.args.get('regid')
+    regbl = dbRegistration.RegDetailsBL()
+    result = regbl.dbgetRegDetails(regid)
+    return jsonify(result)

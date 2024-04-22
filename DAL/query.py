@@ -123,8 +123,8 @@ inner join  Prod.V_ManagerEmployes m on m.managerid = em.ManagerId
 where em.isactive = 1 and em.regid = {0}"""
 
 ##################
-createRegDetails = """insert into [PROD].[RegDetails](superid,regid,emailid,EmergencyContactNo1,EmergencyContactNo2,CurrentAddress,PermanentAddress)
-values({0},{1},'{2}','{3}','{4}','{5}','{6}') """
+createRegDetails = """insert into [PROD].[RegDetails](superid,regid,emailid,EmergencyContactNo1,EmergencyContactNo2,CurrentAddress,PermanentAddress,isactive)
+values({0},{1},'{2}','{3}','{4}','{5}','{6}',1) """
 
 updateRegDetails = """update [PROD].[RegDetails] set emailid = '{0}',EmergencyContactNo1 = '{1}',EmergencyContactNo2 = '{2}',
 CurrentAddress = '{3}',PermanentAddress = '{4}' where RegId =  {5}"""

@@ -203,7 +203,7 @@ class RegDetailsBL:
     def dbgetRegDetails(self,regid):
         try:
             sqlquery = query.getRegDetails.format(regid)
-
+            print(sqlquery)
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.queryall(sqlquery)
 

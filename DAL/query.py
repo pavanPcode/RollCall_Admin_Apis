@@ -80,12 +80,12 @@ BankBranch = '{3}',IfscCode = '{4}' where RegId = {5}"""
 
 deleteRegBankDetails =  """update [PROD].[RegBankDetails] set IsActive = 0 where RegId = {0}"""
 
-getRegBankDetails = """select SuperId,RegId,AccountNo,AccountHoldersName,BankName,BankBranch,IfscCode [PROD].[RegBankDetails] 
+getRegBankDetails = """select SuperId,RegId,AccountNo,AccountHoldersName,BankName,BankBranch,IfscCode from [PROD].[RegBankDetails] 
 where regid = {0} and isactive = 1"""
 
 ###################RegProofs
-createRegProofs = """insert into  [PROD].[RegProofs](SuperId,regid,pan,uan,adhaar,esi,pf,EPFStart,VoterId)
-values({0},{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}') """
+createRegProofs = """insert into  [PROD].[RegProofs](SuperId,regid,pan,uan,adhaar,esi,pf,EPFStart,VoterId,CreatedBy)
+values({0},{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}',{9}) """
 
 updateRegProofs = """update [PROD].[RegProofs] set pan = '{0}',uan = '{1}',adhaar = '{2}',esi = '{3}',pf = '{4}',EPFStart = '{5}',
 VoterId = '{6}' where RegId = {7}"""

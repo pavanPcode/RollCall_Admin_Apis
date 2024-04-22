@@ -46,3 +46,39 @@ def updateRegBankDetails():
     regbl = dbRegistration.RegBankDetailsBL()
     result = regbl.dbupdateRegBankDetails(data)
     return jsonify(result)
+
+@Registration.route('/getRegBankDetails')
+def getRegBankDetails():
+    regid = request.args.get('regid')
+    regbl = dbRegistration.RegBankDetailsBL()
+    result = regbl.dbgetRegBankDetails(regid)
+    return jsonify(result)
+@Registration.route('/deleteRegBankDetails',methods = ['Post'])
+def deleteRegBankDetails():
+    data = request.json
+    regbl = dbRegistration.RegBankDetailsBL()
+    result = regbl.dbdeleteRegBankDetails(data)
+    return jsonify(result)
+
+
+@Registration.route('/createRegProofs',methods = ['Post'])
+def createRegProofs():
+    data = request.json
+    regbl = dbRegistration.RegProofsBL()
+    result = regbl.dbcreateRegProofs(data)
+    return jsonify(result)
+
+
+@Registration.route('/updateRegProofs',methods = ['Post'])
+def updateRegProofs():
+    data = request.json
+    regbl = dbRegistration.RegProofsBL()
+    result = regbl.dbupdateRegProofs(data)
+    return jsonify(result)
+
+@Registration.route('/getRegProofs')
+def getRegProofs():
+    regid = request.args.get('regid')
+    regbl = dbRegistration.RegProofsBL()
+    result = regbl.dbgetRegProofs(regid)
+    return jsonify(result)

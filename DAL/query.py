@@ -169,5 +169,13 @@ where u.IsActive = 1 and u.LoginName = '{0}' and PasswordHash = '{1}'"""
 
 #########################
 
-getShifts = """select Name,StartTime,EndTime from [PROD].[Shifts] where SuperId = {0} and isactive = 1"""
+getShiftsTypes = """select Name,CONVERT(varchar(8), StartTime, 108) AS StartTime,
+    CONVERT(varchar(8), EndTime, 108) AS EndTime from [PROD].[Shifts] where SuperId = {0} and isactive = 1"""
+
+assignshift = """insert into [PROD].[EmpShift] (regid,ShiftId,StartDate,EndDate)
+values({0},{1},'{2}','{3}') """
+
+getAssignshiftByEmp = """select r.id regid,r.Badge,r.CardId,r.UserName,r.Designation,es.ShiftId,es.StartDate,es.EndDate from [PROD].[EmpShift]  es
+inner join [PROD].[Registration]  r on r.id = es.RegId
+where es.IsActive =1 and r.id = {0} """
 

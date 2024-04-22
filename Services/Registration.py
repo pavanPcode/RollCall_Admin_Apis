@@ -82,3 +82,4 @@ def getRegProofs():
     regbl = dbRegistration.RegProofsBL()
     result = regbl.dbgetRegProofs(regid)
     return jsonify(result)
+

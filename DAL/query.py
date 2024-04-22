@@ -96,12 +96,29 @@ getRegProofs = """select SuperId,regid,pan,uan,adhaar,esi,pf,EPFStart,VoterId fr
 where regid = {0} and isactive = 1 """
 
 ##########
+
+checkTeammember = """IF NOT EXISTS (SELECT 1 FROM [PROD].[EmpManager] WHERE regid = {0} and isactive = 1)
+BEGIN
+    select 1 type
+END
+ELSE
+BEGIN
+    select 0 type
+END"""
+
+
 createEmpManager = """insert into [PROD].[EmpManager] (superid,regid,ManagerId)
 values({0},{1},{2})"""
 
 updateEmpManager = """update [PROD].[EmpManager] set superid = {0} ,ManagerId = {2} where RegId = {1}"""
 
-deleteEmpManager = """update [PROD].[EmpManager] set isactive  = 0 where RegId = """
+deleteEmpManager = """update [PROD].[EmpManager] set isactive  = 0 where RegId = {0}"""
+
+getempmanager = """select m.regid,m.cardid,m.badge,m.username,m.designation,m.dateofjoining,m.empportalaccess,m.managerid,m.emailId
+from [PROD].[EmpManager] em
+inner join  [PROD].[Registration]  e on e.id = em.RegId
+inner join  Prod.V_ManagerEmployes m on m.managerid = em.ManagerId
+where em.isactive = 1 and em.regid = {0}"""
 
 ##################
 createRegDetails = """insert into [PROD].[RegDetails](superid,regid,emailid,EmergencyContactNo1,EmergencyContactNo2,CurrentAddress,PermanentAddress)

@@ -165,3 +165,4 @@ class RegProofsBL:
             return resultmodel.__dict__
         except Exception as e:
             return cutil.SuccessResult(str(e)).__dict__
+

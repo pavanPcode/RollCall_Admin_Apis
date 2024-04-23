@@ -1,34 +1,25 @@
-import pyodbc
+from flask import Flask, request, jsonify
 
-# Establish connection to the SQL Server
-conn = pyodbc.connect('DRIVER={SQL Server};'
-                      'SERVER=sql8002.site4now.net;'
-                      'DATABASE=db_a99f12_qarcpayroll;'
-                      'UID=db_a99f12_qarcpayroll_admin;'
-                      'PWD=q@rcp@yr0ll')
+app = Flask(__name__)
 
-# Create a cursor object
-cursor = conn.cursor()
+# Define a list of allowed API keys
+allowed_api_keys = ["your_api_key_here"]
 
-# SQL query to declare and insert values into a table variable
-sql_query = """
-SET NOCOUNT ON
+# Decorator to verify API key
+def require_api_key(func):
+    def wrapper(*args, **kwargs):
+        api_key = request.headers.get("X-API-Key")
+        if api_key in allowed_api_keys:
+            return func(*args, **kwargs)
+        else:
+            return jsonify({"error": "Unauthorized"}), 401
+    return wrapper
 
-DECLARE @Filter [PROD].[Type_RollCallReportFilter]
-INSERT INTO @Filter (SuperId, ReportId, StartDate, EndDate, RegId, DeptId, AttendanceStatus, ShiftId, BranchId)
-VALUES (10051, 4, '2024-01-09', '2024-01-10', 0, 0, null, 0, 0)
-EXEC [PROD].[SP_RollCallGenerateReport] @Filter;
-"""
+# Protected endpoint
+@app.route("/protected", methods=["GET"])
+@require_api_key
+def protected():
+    return jsonify({"message": "Access granted"})
 
-# Execute the SQL query
-cursor.execute(sql_query)
-
-# Fetch the data, if any
-data = cursor.fetchall()
-
-# Close the cursor and connection
-cursor.close()
-conn.close()
-
-# Print the fetched data
-print(data)
+if __name__ == "__main__":
+    app.run(debug=True)

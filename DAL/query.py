@@ -169,7 +169,7 @@ where u.IsActive = 1 and u.LoginName = '{0}' and PasswordHash = '{1}'"""
 
 #########################
 
-getShiftsTypes = """select Name,CONVERT(varchar(8), StartTime, 108) AS StartTime,
+getShiftsTypes = """select id shiftid,Name,CONVERT(varchar(8), StartTime, 108) AS StartTime,
     CONVERT(varchar(8), EndTime, 108) AS EndTime from [PROD].[Shifts] where SuperId = {0} and isactive = 1"""
 
 assignshift = """insert into [PROD].[EmpShift] (regid,ShiftId,StartDate,EndDate)

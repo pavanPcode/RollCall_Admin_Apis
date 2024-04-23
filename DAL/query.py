@@ -51,8 +51,8 @@ values({0},{1},'{2}','{3}','{4}',{5},'{6}','{7}',{9})
 
 SET @RegId = SCOPE_IDENTITY()
 
-insert into [PROD].[EmpBranch](SuperId,RegId,BranchId)
-values({0},@RegId ,{10})
+insert into [PROD].[EmpBranch](SuperId,RegId,BranchId,CreatedBy)
+values({0},@RegId ,{10},{12})
 
 insert into [PROD].[EmpDept] (regid,deptid)
 values(@RegId ,{11})"""

@@ -20,7 +20,7 @@ class ShiftsBL:
             else:
                 return cutil.SuccessResult('Shift assigned Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbgetShiftsTypes(self,superid):
         try:
@@ -33,7 +33,7 @@ class ShiftsBL:
             resultmodel =  dataoutputmodel.DataOutputModel('getShiftsTypes',rows,True)
             return resultmodel.__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbgetAssignshiftByEmp(self,regid):
         try:
@@ -46,4 +46,4 @@ class ShiftsBL:
             resultmodel =  dataoutputmodel.DataOutputModel('getAssignshiftByEmp',rows,True)
             return resultmodel.__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__

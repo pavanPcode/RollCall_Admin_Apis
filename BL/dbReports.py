@@ -12,7 +12,6 @@ class ReportsBL:
     def dbgetReports(self,superid,reportiid,StartDate,EndDate,RegId,DeptId,AttendanceStatus,ShiftId,BranchId):
         try:
             sqlquery = query.getReports.format(superid,reportiid,StartDate,EndDate,RegId,DeptId,AttendanceStatus,ShiftId,BranchId)
-            print(sqlquery)
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.execstoredproc(sqlquery)
             if rows == None or len(rows) == 0:
@@ -52,4 +51,4 @@ class ReportsBL:
             resultmodel =  dataoutputmodel.DataOutputModel('getReports',modified_data,True)
             return resultmodel.__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__

@@ -18,7 +18,7 @@ class TerminationBL:
             else:
                 return cutil.SuccessResult('resignEmp Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbupdaterejoinEmp(self,data):
         try:
@@ -30,7 +30,7 @@ class TerminationBL:
             else:
                 return cutil.SuccessResult('rejoinEmp Updated Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbgetTerminatedlist(self,superid):
         try:
@@ -42,4 +42,4 @@ class TerminationBL:
             resultmodel =  dataoutputmodel.DataOutputModel('getTerminatedlist',rows,True)
             return resultmodel.__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__

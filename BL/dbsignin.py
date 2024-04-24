@@ -19,4 +19,4 @@ class SignBL:
             resultmodel =  dataoutputmodel.DataOutputModel('portalLogin',rows,True)
             return resultmodel.__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__

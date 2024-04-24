@@ -77,7 +77,7 @@ class RegBankDetailsBL:
             else:
                 return cutil.SuccessResult('RegBankDetails created Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbupdateRegBankDetails(self,data):
         try:
@@ -90,7 +90,7 @@ class RegBankDetailsBL:
             else:
                 return cutil.SuccessResult('RegBankDetails Updated Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbdeleteRegBankDetails(self,data):
         try:
@@ -102,7 +102,7 @@ class RegBankDetailsBL:
             else:
                 return cutil.SuccessResult('RegBankDetails deleted Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbgetRegBankDetails(self,regid):
         try:
@@ -114,7 +114,7 @@ class RegBankDetailsBL:
             resultmodel =  dataoutputmodel.DataOutputModel('getRegBankDetails',rows,True)
             return resultmodel.__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
 
 
@@ -134,7 +134,7 @@ class RegProofsBL:
             else:
                 return cutil.SuccessResult('RegProofs created Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbupdateRegProofs(self,data):
         try:
@@ -149,7 +149,7 @@ class RegProofsBL:
             else:
                 return cutil.SuccessResult('RegProofs Updated Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbgetRegProofs(self,regid):
         try:
@@ -163,7 +163,7 @@ class RegProofsBL:
             resultmodel =  dataoutputmodel.DataOutputModel('getRegProofs',rows,True)
             return resultmodel.__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
 
 
@@ -184,7 +184,7 @@ class RegDetailsBL:
             else:
                 return cutil.SuccessResult('RegDetails created Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbupdateRegDetails(self,data):
         try:
@@ -199,7 +199,7 @@ class RegDetailsBL:
             else:
                 return cutil.SuccessResult('RegDetails Updated Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbgetRegDetails(self,regid):
         try:
@@ -213,4 +213,4 @@ class RegDetailsBL:
             resultmodel =  dataoutputmodel.DataOutputModel('getRegDetails',rows,True)
             return resultmodel.__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__

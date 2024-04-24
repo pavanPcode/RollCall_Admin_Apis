@@ -6,7 +6,7 @@ Reports = Blueprint('Reports',__name__)
 
 @Reports.route('/getReports')
 def getdepartment():
-    #try:
+    try:
         superid = request.args.get('superid')
         reportiid = request.args.get('reportiid')
         StartDate = request.args.get('StartDate',default='null')
@@ -34,8 +34,7 @@ def getdepartment():
 
         deptbl = dbReports.ReportsBL()
         result = deptbl.dbgetReports(superid,reportiid,StartDate,EndDate,RegId,DeptId,AttendanceStatus,ShiftId,BranchId)
-        print(result)
         return json.dumps(result)
-    # except Exception as e:
-    #     cut = commonutil()
-    #     return jsonify(cut.InvalidResult(str(e)).__dict__)
+    except Exception as e:
+        cut = commonutil()
+        return jsonify(cut.InvalidResult(str(e)).__dict__)

@@ -20,7 +20,7 @@ class HolidaysBL:
             else:
                 return cutil.SuccessResult('Holiday created Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbupdateHolidays(self,data):
         try:
@@ -33,7 +33,7 @@ class HolidaysBL:
             else:
                 return cutil.SuccessResult('Holiday Updated Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbdeleteHolidays(self,data):
         try:
@@ -45,7 +45,7 @@ class HolidaysBL:
             else:
                 return cutil.SuccessResult('Holiday deleted Successfully').__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__
 
     def dbgetHolidays(self,superid,start_date,end_date):
         try:
@@ -58,4 +58,4 @@ class HolidaysBL:
             resultmodel =  dataoutputmodel.DataOutputModel('getholiday',rows,True)
             return resultmodel.__dict__
         except Exception as e:
-            return cutil.SuccessResult(str(e)).__dict__
+            return cutil.InvalidResult(str(e)).__dict__

@@ -179,3 +179,24 @@ getAssignshiftByEmp = """select r.id regid,r.Badge,r.CardId,r.UserName,r.Designa
 inner join [PROD].[Registration]  r on r.id = es.RegId
 where es.IsActive =1 and r.id = {0} """
 
+################leaves ##########
+
+leavetypes = """Select LvType,LvTypeId From Prod.OrgLeaveTypes ORGLV INNER JOIN PROD.LeaveTypes LT ON ORGLV.LvTypeId = Lt.Id 
+Where ORGLv.IsActive = 1 and ORGLv.SuperId = {0}"""
+
+leaveaccruals = """Select LeaveTypeName,CarryForwardLeaves,Accrued,Taken,Balance, 1 'approved' ,1 'pending',3 'cancelled' 
+ from Prod.V_LeaveAccruals 
+Where RegId = {0} and Year ={1}"""
+
+empleaves = """\
+Select CardId,UserName,Badge,DeptId,DeptName,LvTypeId,LvType,LvCode,Id leaveid,RegId,LeaveCount,Status,\
+CONVERT(VARCHAR, StartDt, 103) as StartDt,CONVERT(VARCHAR, EndDt, 103) as EndDt,Reason,Comments,CompOffDate,BranchId\
+ from Prod.V_LeaveDetails Where RegId = {0} and Year(StartDt)={1}"""
+
+leaverec = """\
+SET NOCOUNT ON EXEC PROD.SP_InsertLeave {0}, {1}, {2}, {3}, '{4}', '{5}',{6},'{7}',1\
+COMMIT"""
+
+
+
+approveleave = """Update Prod.Leaves Set Status = {0},UpdatedBy={2},UpdatedOn=GetDate(),comments = '{3}' Where Id = {1} """

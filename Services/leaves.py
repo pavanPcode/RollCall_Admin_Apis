@@ -45,3 +45,27 @@ def getempleaves():
     except Exception as e:
         retmdl = cutil.InvalidResult(f"Error occured : {str(e)}")
         return json.dumps(retmdl.__dict__,default=str)
+
+@leaves.route("/saveleave", methods=['POST'])
+def saveleave():
+    try:
+        if request.method == 'POST':
+            reqdata = request.json
+            leavebl = dbleaves.LeaveBL()
+            retrows = leavebl.saveleave(reqdata['inputdata'])
+            return json.dumps(retrows.__dict__,default=str)
+    except Exception as e:
+        retmdl = cutil.InvalidResult(f"Error occured : {str(e)}")
+        return json.dumps(retmdl.__dict__,default=str)
+
+@leaves.route("/updateleave", methods=['POST'])
+def approveleave():
+    try:
+
+        reqdata = request.json
+        leavebl = dbleaves.LeaveBL()
+        retrows = leavebl.approveleave(reqdata['inputdata'])
+        return json.dumps(retrows.__dict__,default=str)
+    except Exception as e:
+        retmdl = cutil.InvalidResult(f"Error occured : {str(e)}")
+        return json.dumps(retmdl.__dict__,default=str)

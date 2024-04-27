@@ -185,7 +185,7 @@ inner join [PROD].[Registration]  r on r.id = es.RegId
 inner join [PROD].[Shifts] s on s.id = es.ShiftId
 where es.IsActive =1 and r.id = {0} """
 
-getEmpByShift = """SELECT RegId AS Id, UserName + ' - ' + Badge AS UserName
+getEmpByShift = """SELECT RegId AS regid, UserName + ' - ' + Badge AS UserName
 FROM prod.V_PrevShiftEmp
 WHERE SuperId = {1} AND ShiftId = {0}"""
 

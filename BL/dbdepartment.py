@@ -4,7 +4,6 @@ from HelperClass import sqlhelper,commonutil,dataoutputmodel
 
 cutil = commonutil.commonutil()
 
-
 class DepartmentBL:
     cutil = commonutil.commonutil()
     def __init__(self):
@@ -24,7 +23,6 @@ class DepartmentBL:
     def dbupdatedepartment(self,data):
         try:
             sqlquery = query.updatedepartment.format(data['superid'],data['name'],data['code'],data['departmentid'])
-            print(sqlquery)
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.update(sqlquery)
             if rows < 1:

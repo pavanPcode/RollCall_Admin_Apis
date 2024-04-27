@@ -35,7 +35,7 @@ getdepartment = """select id departmentid,SuperId,Name,code from [PROD].[Departm
 
 getEmpByDept = """select r.id regid,r.UserName,r.Badge,r.Gender,r.Designation from [PROD].[EmpDept] ed
 inner join [PROD].[Registration] r on r.id = ed.RegId
-where ed.IsActive = 1 and ed.DeptId = {0}"""
+where ed.IsActive = 1 and ed.DeptId = {0} and r.superid = {1}"""
 
 createdepartment = """insert into [PROD].[Department] (SuperId,name,code,IsActive)
 values({0},'{1}','{2}',1) """
@@ -182,7 +182,11 @@ inner join [PROD].[Registration]  r on r.id = es.RegId
 inner join [PROD].[Shifts] s on s.id = es.ShiftId
 where es.IsActive =1 and r.id = {0} """
 
-
+getEmpByShift = """select r.id regid,r.Badge,r.CardId,r.UserName,r.Designation,es.ShiftId,es.StartDate,es.EndDate ,s.Name,s.Code
+from [PROD].[EmpShift]  es
+inner join [PROD].[Registration]  r on r.id = es.RegId
+inner join [PROD].[Shifts] s on s.id = es.ShiftId
+where es.IsActive =1 and es.ShiftId = {0} and r.superid = {1}"""
 
 ################leaves ##########
 

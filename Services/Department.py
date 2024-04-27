@@ -38,9 +38,10 @@ def getdepartment():
 @Department.route('/getEmpByDept')
 def getEmpByDept():
     departmentid = request.args.get('departmentid')
+    superid = request.args.get('superid')
     if departmentid == None:
         cut = commonutil()
-        return jsonify(cut.InvalidResult('required departmentid parameter').__dict__)
+        return jsonify(cut.InvalidResult('required departmentid and superid parameter').__dict__)
     deptbl = dbdepartment.DepartmentBL()
-    result = deptbl.dbgetEmpByDept(departmentid)
+    result = deptbl.dbgetEmpByDept(departmentid,superid)
     return jsonify(result)

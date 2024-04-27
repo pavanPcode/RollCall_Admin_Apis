@@ -30,3 +30,14 @@ def getAssignshiftByEmp():
     shiftbl = dbshifts.ShiftsBL()
     result = shiftbl.dbgetAssignshiftByEmp(regid)
     return jsonify(result)
+
+@Shifts.route('/getEmpByShift')
+def getEmpByShift():
+    shiftId = request.args.get('shiftid')
+    superid = request.args.get('superid')
+    if shiftId == None   and superid == None:
+        cut = commonutil()
+        return jsonify(cut.InvalidResult('required shiftId and superid parameter').__dict__)
+    shiftbl = dbshifts.ShiftsBL()
+    result = shiftbl.dbgetEmpByShift(shiftId,superid)
+    return jsonify(result)

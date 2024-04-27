@@ -49,7 +49,7 @@ class DepartmentBL:
     def dbgetdepartment(self,superid):
         try:
             sqlquery = query.getdepartment.format(superid)
-            print(sqlquery)
+
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.queryall(sqlquery)
             if rows == None or len(rows) == 0:
@@ -59,10 +59,10 @@ class DepartmentBL:
         except Exception as e:
             return cutil.InvalidResult(str(e)).__dict__
 
-    def dbgetEmpByDept(self,departmentid):
+    def dbgetEmpByDept(self,departmentid,superid):
         try:
-            sqlquery = query.getEmpByDept.format(departmentid)
-            print(sqlquery)
+            sqlquery = query.getEmpByDept.format(departmentid,superid)
+
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.queryall(sqlquery)
             if rows == None or len(rows) == 0:

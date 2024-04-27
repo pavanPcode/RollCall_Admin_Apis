@@ -182,11 +182,9 @@ inner join [PROD].[Registration]  r on r.id = es.RegId
 inner join [PROD].[Shifts] s on s.id = es.ShiftId
 where es.IsActive =1 and r.id = {0} """
 
-getEmpByShift = """select r.id regid,r.Badge,r.CardId,r.UserName,r.Designation,es.ShiftId,es.StartDate,es.EndDate ,s.Name,s.Code
-from [PROD].[EmpShift]  es
-inner join [PROD].[Registration]  r on r.id = es.RegId
-inner join [PROD].[Shifts] s on s.id = es.ShiftId
-where es.IsActive =1 and es.ShiftId = {0} and r.superid = {1}"""
+getEmpByShift = """SELECT RegId AS Id, UserName + ' - ' + Badge AS UserName
+FROM prod.V_PrevShiftEmp
+WHERE SuperId = {1} AND ShiftId = {0}"""
 
 ################leaves ##########
 

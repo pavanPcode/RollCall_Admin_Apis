@@ -11,10 +11,10 @@ class ShiftsBL:
         self.dbname = "premiumdb"
     def dbcreateShifts(self,data):
         try:
-            sqlquery = query.assignshift.format(data['regid'],data['shiftid'],data['startdate'],data['enddate'])
-            print(sqlquery)
-            sqlobj = sqlhelper.sqlhelper(self.dbname)
-            rows = sqlobj.update(sqlquery)
+            for regid in data['regid']:
+                sqlquery = query.assignshift.format(regid,data['shiftid'],data['startdate'],data['enddate'])
+                sqlobj = sqlhelper.sqlhelper(self.dbname)
+                rows = sqlobj.update(sqlquery)
             if rows < 1:
                 return cutil.InvalidResult(' Invalid').__dict__
             else:

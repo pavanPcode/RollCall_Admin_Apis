@@ -67,7 +67,8 @@ deleteEmployee = """update [PROD].[Registration] set IsActive = 0 where id = {0}
 
 getEmployee = """
 select r.id regid,r.superid,r.Badge,r.UserName,r.DateOfBirth,r.Designation,r.CardId,r.Mobile,r.RFID,r.DateOfBirth,r.Gender,emp.branchid,
-b.Name branchname ,b.Code branchcode,ed.DeptId Departmentid ,d.Name Departmentname ,d.Code Departmentcode,r.isactive,r.dateofjoining
+b.Name branchname ,b.Code branchcode,ed.DeptId Departmentid ,d.Name Departmentname ,d.Code Departmentcode,r.isactive,r.dateofjoining,
+r.MobileAccess,r.EmpPortalAccess
 from [PROD].[Registration] r
 left join [PROD].[EmpBranch] emp on emp.RegId = r.id
 left join [PROD].[Branches] b on b.id = emp.BranchId

@@ -26,7 +26,6 @@ def removeempportalaccess():
     result = accbl.dbremoveempportalAccess(data)
     return jsonify(result)
 
-    return jsonify({"Message":None,"ResultData":[],"Status":True})
 
 @Access.route('/removemobileaccess',methods = ['Post'])
 def removemobileaccess():
@@ -35,4 +34,3 @@ def removemobileaccess():
     result = accbl.dbremovemobileAccess(data)
     return jsonify(result)
 
-    return jsonify({"Message":None,"ResultData":[],"Status":True})

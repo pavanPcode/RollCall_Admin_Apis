@@ -212,7 +212,7 @@ COMMIT"""
 approveleave = """Update Prod.Leaves Set Status = {0},UpdatedBy={2},UpdatedOn=GetDate(),comments = '{3}' Where Id = {1} """
 
 
-addmobileAccess = """update [PROD].[Registration] set Mobile = 1 where id = {0};
+addmobileAccess = """update [PROD].[Registration] set MobileAccess = 1 where id = {0};
 insert into [PROD].[RCEssentials] (regid,SuperId,Badge,UserName,AccessType,AccessPwd)
 select id,SuperId,Badge,UserName,{1},{2} from [PROD].[Registration] where id = 173"""
 

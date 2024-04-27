@@ -25,7 +25,6 @@ class ShiftsBL:
     def dbgetShiftsTypes(self,superid):
         try:
             sqlquery = query.getShiftsTypes.format(superid)
-            print(sqlquery)
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.queryall(sqlquery)
             if rows == None or len(rows) == 0:
@@ -38,7 +37,6 @@ class ShiftsBL:
     def dbgetAssignshiftByEmp(self,regid):
         try:
             sqlquery = query.getAssignshiftByEmp.format(regid)
-            print(sqlquery)
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.queryall(sqlquery)
             if rows == None or len(rows) == 0:
@@ -51,7 +49,6 @@ class ShiftsBL:
     def dbgetEmpByShift(self,ShiftId,superid):
         try:
             sqlquery = query.getEmpByShift.format(ShiftId,superid)
-            print(sqlquery)
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.queryall(sqlquery)
             if rows == None or len(rows) == 0:

@@ -33,9 +33,12 @@ getbranches = """select id branchid,SuperId,Name,code from [PROD].[Branches] whe
 ########################department
 getdepartment = """select id departmentid,SuperId,Name,code from [PROD].[Department] where isactive = 1 and SuperId = {0}"""
 
-getEmpByDept = """select r.id regid,r.UserName,r.Badge,r.Gender,r.Designation from [PROD].[EmpDept] ed
-inner join [PROD].[Registration] r on r.id = ed.RegId
-where ed.IsActive = 1 and ed.DeptId = {0} and r.superid = {1}"""
+getEmpByDept = """
+
+SELECT Id regid, UserName + '-' + Badge AS UserName
+FROM prod.V_AllRegDetails
+WHERE SuperId = {1} AND DeptId = {0}
+ORDER BY Badge;"""
 
 createdepartment = """insert into [PROD].[Department] (SuperId,name,code,IsActive)
 values({0},'{1}','{2}',1) """

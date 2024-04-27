@@ -176,9 +176,13 @@ getShiftsTypes = """select id shiftid,Name,CONVERT(varchar(8), StartTime, 108) A
 assignshift = """insert into [PROD].[EmpShift] (regid,ShiftId,StartDate,EndDate)
 values({0},{1},'{2}','{3}') """
 
-getAssignshiftByEmp = """select r.id regid,r.Badge,r.CardId,r.UserName,r.Designation,es.ShiftId,es.StartDate,es.EndDate from [PROD].[EmpShift]  es
+getAssignshiftByEmp = """select r.id regid,r.Badge,r.CardId,r.UserName,r.Designation,es.ShiftId,es.StartDate,es.EndDate ,s.Name,s.Code
+from [PROD].[EmpShift]  es
 inner join [PROD].[Registration]  r on r.id = es.RegId
+inner join [PROD].[Shifts] s on s.id = es.ShiftId
 where es.IsActive =1 and r.id = {0} """
+
+
 
 ################leaves ##########
 

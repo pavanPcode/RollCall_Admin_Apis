@@ -31,3 +31,27 @@ class AccessBL:
                 return cutil.SuccessResult('EmpPortalAccess added Successfully').__dict__
         except Exception as e:
             return cutil.InvalidResult(str(e)).__dict__
+
+    def dbremovemobileAccess(self,data):
+        try:
+            sqlquery = query.removemobileAccess.format(data['regid'])
+            sqlobj = sqlhelper.sqlhelper(self.dbname)
+            rows = sqlobj.update(sqlquery)
+            if rows < 1:
+                return cutil.InvalidResult(' Invalid').__dict__
+            else:
+                return cutil.SuccessResult('removed mobileAccess  Successfully').__dict__
+        except Exception as e:
+            return cutil.InvalidResult(str(e)).__dict__
+
+    def dbremoveempportalAccess(self,data):
+        try:
+            sqlquery = query.removeempportalAccess.format(data['regid'])
+            sqlobj = sqlhelper.sqlhelper(self.dbname)
+            rows = sqlobj.update(sqlquery)
+            if rows < 1:
+                return cutil.InvalidResult(' Invalid').__dict__
+            else:
+                return cutil.SuccessResult('removed empportalAccess  Successfully').__dict__
+        except Exception as e:
+            return cutil.InvalidResult(str(e)).__dict__

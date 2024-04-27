@@ -22,11 +22,17 @@ def createbranch():
 @Access.route('/removeempportalaccess',methods = ['Post'])
 def removeempportalaccess():
     data = request.json
+    accbl = dbAccess.AccessBL()
+    result = accbl.dbremoveempportalAccess(data)
+    return jsonify(result)
 
     return jsonify({"Message":None,"ResultData":[],"Status":True})
 
 @Access.route('/removemobileaccess',methods = ['Post'])
 def removemobileaccess():
     data = request.json
+    accbl = dbAccess.AccessBL()
+    result = accbl.dbremovemobileAccess(data)
+    return jsonify(result)
 
     return jsonify({"Message":None,"ResultData":[],"Status":True})

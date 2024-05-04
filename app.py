@@ -7,7 +7,6 @@ from Services import Holidays,Reports,Branch,Department,Registration,signin,Team
 app = Flask(__name__)
 
 CORS(app)
-
 @app.route('/')
 def ServiceHealth():
     return jsonify('RollCall Admin Service Is Up')

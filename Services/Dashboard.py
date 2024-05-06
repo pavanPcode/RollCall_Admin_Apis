@@ -5,6 +5,7 @@ from HelperClass.commonutil import commonutil
 dashboard = Blueprint('dashboard',__name__)
 
 
+
 @dashboard.route('/getDashboardAttendance')
 def DashboardAttendance():
     superid = request.args.get('superid')

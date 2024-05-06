@@ -19,14 +19,11 @@ class dashboardBL:
             enddate = f'{todaydate} 23:59:59'
 
             sqlquery = query.getDashboardAttendance.format(superid,stardate,enddate,InStatus)
-            print(sqlquery)
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.queryall(sqlquery)
             if rows == None or len(rows) == 0:
                 return cutil.InvalidResult('No data available').__dict__
-            print(rows)
             rows = json.dumps(rows)
-            print(rows)
             resultmodel =  dataoutputmodel.DataOutputModel('getDashboardAttendance',rows,True)
             return resultmodel.__dict__
         except Exception as e:

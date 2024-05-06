@@ -23,7 +23,7 @@ class dashboardBL:
             rows = sqlobj.queryall(sqlquery)
             if rows == None or len(rows) == 0:
                 return cutil.InvalidResult('No data available').__dict__
-            rows = json.dumps(rows)
+            # rows = json.dumps(rows)
             resultmodel =  dataoutputmodel.DataOutputModel('getDashboardAttendance',rows,True)
             return resultmodel.__dict__
         except Exception as e:

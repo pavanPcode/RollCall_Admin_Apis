@@ -13,7 +13,6 @@ class EmployeeBL:
             sqlquery = query.createEmployee.format(data['superid'],data['badge'],data['username'],data['dateofbirth']
                                                   ,data['designation'],data['cardid'],data['mobile'],data['rfid']
                                                    ,data['dateofbirth'],data['gender'],data['branchid'],data['departmentid'],data['createdby'])
-            print(sqlquery)
             sqlobj = sqlhelper.sqlhelper(self.dbname)
             rows = sqlobj.update(sqlquery)
             if rows < 1:

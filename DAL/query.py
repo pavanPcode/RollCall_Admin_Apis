@@ -214,13 +214,13 @@ approveleave = """Update Prod.Leaves Set Status = {0},UpdatedBy={2},UpdatedOn=Ge
 
 addmobileAccess = """update [PROD].[Registration] set MobileAccess = 1 where id = {0};
 insert into [PROD].[RCEssentials] (regid,SuperId,Badge,UserName,AccessType,AccessPwd)
-select id,SuperId,Badge,UserName,{1},{2} from [PROD].[Registration] where id = 173"""
+select id,SuperId,Badge,UserName,{1},{2} from [PROD].[Registration] where id = {0}"""
 
 removemobileAccess = """update [PROD].[Registration] set MobileAccess = 0 where id = {0};"""
 
 
 addempportalAccess = """update [PROD].[Registration] set EmpPortalAccess = 1 where id = {0};
 insert into [PROD].[RCEssentials] (regid,SuperId,Badge,UserName,AccessType,AccessPwd)
-select id,SuperId,Badge,UserName,{1},{2} from [PROD].[Registration] where id = 173"""
+select id,SuperId,Badge,UserName,{1},{2} from [PROD].[Registration] where id = {0}"""
 
 removeempportalAccess = """update [PROD].[Registration] set EmpPortalAccess = 0 where id = {0};"""

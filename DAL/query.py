@@ -224,3 +224,13 @@ insert into [PROD].[RCEssentials] (regid,SuperId,Badge,UserName,AccessType,Acces
 select id,SuperId,Badge,UserName,{1},{2} from [PROD].[Registration] where id = {0}"""
 
 removeempportalAccess = """update [PROD].[Registration] set EmpPortalAccess = 0 where id = {0};"""
+
+###############
+createRegFamily = """insert into [PROD].[RegFamily] (SuperId,RegId,Name,Relation,DateOfBirth,Age,CreatedBy,CreatedOn)
+values({0},{1},'{2}','{3}','{4}',{5},{6},DATEADD(MINUTE, 330, GETUTCDATE()))"""
+
+updateRegFamily = """update [PROD].[RegFamily] set Name = '{1}',Relation = '{2}',DateOfBirth = '{3}',Age = '{4}',UpdatedBy = {5},
+UpdatedOn = DATEADD(MINUTE, 330, GETUTCDATE()) 
+where RegId =  {0}"""
+
+getRegFamily = """select * from [PROD].[RegFamily] where RegId = {0} """

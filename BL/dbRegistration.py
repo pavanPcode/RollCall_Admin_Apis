@@ -213,3 +213,52 @@ class RegDetailsBL:
             return resultmodel.__dict__
         except Exception as e:
             return cutil.InvalidResult(str(e)).__dict__
+
+
+
+
+class RegFamilyBL:
+    cutil = commonutil.commonutil()
+    def __init__(self):
+        self.dbname = "premiumdb"
+    def dbcreateRegFamily(self,data):
+        try:
+            sqlquery = query.createRegFamily.format(data['SuperId'],data['RegId'],data['Name'],data['Relation'],data['DateOfBirth']
+                                                  ,data['Age'],data['CreatedBy'])
+            print(sqlquery)
+
+            sqlobj = sqlhelper.sqlhelper(self.dbname)
+            rows = sqlobj.update(sqlquery)
+            if rows < 1:
+                return cutil.InvalidResult(' Invalid').__dict__
+            else:
+                return cutil.SuccessResult('RegFamily created Successfully').__dict__
+        except Exception as e:
+            return cutil.InvalidResult(str(e)).__dict__
+
+    def dbupdateRegFamily(self,data):
+        try:
+            sqlquery = query.updateRegFamily.format(data['RegId'],data['Name'],data['Relation']
+                                                  ,data['DateOfBirth'],data['Age'],data['UpdatedBy'])
+            print(sqlquery)
+            sqlobj = sqlhelper.sqlhelper(self.dbname)
+            rows = sqlobj.update(sqlquery)
+            if rows < 1:
+                return cutil.InvalidResult(' Invalid').__dict__
+            else:
+                return cutil.SuccessResult('RegFamily Updated Successfully').__dict__
+        except Exception as e:
+            return cutil.InvalidResult(str(e)).__dict__
+
+    def dbgetRegFamily(self,regid):
+        try:
+            sqlquery = query.getRegFamily.format(regid)
+            sqlobj = sqlhelper.sqlhelper(self.dbname)
+            rows = sqlobj.queryall(sqlquery)
+
+            if rows == None or len(rows) == 0:
+                return cutil.InvalidResult('No data available').__dict__
+            resultmodel =  dataoutputmodel.DataOutputModel('getRegFamily',rows,True)
+            return resultmodel.__dict__
+        except Exception as e:
+            return cutil.InvalidResult(str(e)).__dict__

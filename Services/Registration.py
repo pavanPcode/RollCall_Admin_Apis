@@ -116,3 +116,26 @@ def getRegDetails():
     regbl = dbRegistration.RegDetailsBL()
     result = regbl.dbgetRegDetails(regid)
     return jsonify(result)
+
+
+@Registration.route('/createRegFamily',methods = ['Post'])
+def createRegFamily():
+    data = request.json
+    regbl = dbRegistration.RegFamilyBL()
+    result = regbl.dbcreateRegFamily(data)
+    return jsonify(result)
+
+
+@Registration.route('/updateRegFamily',methods = ['Post'])
+def updateRegFamily():
+    data = request.json
+    regbl = dbRegistration.RegFamilyBL()
+    result = regbl.dbupdateRegFamily(data)
+    return jsonify(result)
+
+@Registration.route('/getRegFamily')
+def getRegFamily():
+    regid = request.args.get('regid')
+    regbl = dbRegistration.RegFamilyBL()
+    result = regbl.dbgetRegFamily(regid)
+    return jsonify(result)

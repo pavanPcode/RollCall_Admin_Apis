@@ -234,3 +234,16 @@ UpdatedOn = DATEADD(MINUTE, 330, GETUTCDATE())
 where RegId =  {0}"""
 
 getRegFamily = """select * from [PROD].[RegFamily] where RegId = {0} """
+
+getDashboardAttendance = """SELECT * FROM prod.V_Attendance
+WHERE SuperId = {0}
+    AND DateOfTransaction >= '{1}'
+    AND DateOfTransaction <= '{2}' and  InStatus = '{3}';
+"""
+
+getDashboardAttendance =  """	SELECT * FROM prod.V_Attendance
+WHERE SuperId = 10051
+    AND DateOfTransaction >= '2019-12-31 00:00:01'
+    AND DateOfTransaction <= '2019-12-31 23:59:59' and  InStatus = 'L';"""
+
+getdashboardcount = """	select 10 'TOTALREGISTRATIONS',5 'PRESENT',6 'LATE',8 'ABSENT'"""

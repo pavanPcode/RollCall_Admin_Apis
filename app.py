@@ -3,7 +3,7 @@ from flask_cors import CORS
 import requests
 from datetime import datetime
 import logging
-from Services import Holidays,Reports,Branch,Department,Registration,signin,Team,Termination,Shifts,leaves,Access
+from Services import Holidays,Reports,Branch,Department,Registration,signin,Team,Termination,Shifts,leaves,Access,Dashboard
 app = Flask(__name__)
 
 CORS(app)
@@ -22,7 +22,7 @@ app.register_blueprint(Termination.Termination,url_prefix='/rcadmin/termination'
 app.register_blueprint(Shifts.Shifts,url_prefix='/rcadmin/shifts')
 app.register_blueprint(leaves.leaves,url_prefix='/rcadmin/leaves')
 app.register_blueprint(Access.Access,url_prefix='/rcadmin/access')
-
+app.register_blueprint(Dashboard.dashboard,url_prefix='/rcadmin/Dashboard')
 
 
 if __name__ == "__main__":

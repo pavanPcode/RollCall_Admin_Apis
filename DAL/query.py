@@ -241,7 +241,7 @@ WHERE SuperId = {0}
     AND DateOfTransaction <= '{2}' and  InStatus = '{3}';
 """
 
-getDashboardAttendance =  """	SELECT * FROM prod.V_Attendance
+getDashboardAttendance =  """SELECT UserName,Department,InTime,Badge,FormatInTime,Mobile FROM prod.V_Attendance
 WHERE SuperId = 10051
     AND DateOfTransaction >= '2019-12-31 00:00:01'
     AND DateOfTransaction <= '2019-12-31 23:59:59' and  InStatus = 'L';"""

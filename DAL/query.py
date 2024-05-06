@@ -247,4 +247,4 @@ WHERE SuperId = 10051
     AND DateOfTransaction >= '2019-12-31 00:00:01'
     AND DateOfTransaction <= '2019-12-31 23:59:59' and  InStatus = 'L';"""
 
-getdashboardcount = """	select 10 'TOTALREGISTRATIONS',5 'PRESENT',6 'LATE',8 'ABSENT',9 leave"""
+getdashboardcount = """	select 10 'TOTALREGISTRATIONS',5 'PRESENT',6 'LATE',8 'ABSENT',9 'leave'"""

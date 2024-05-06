@@ -25,5 +25,6 @@ app.register_blueprint(Access.Access,url_prefix='/rcadmin/access')
 app.register_blueprint(Dashboard.dashboard,url_prefix='/rcadmin/Dashboard')
 
 
+
 if __name__ == "__main__":
     app.run()

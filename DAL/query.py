@@ -253,3 +253,9 @@ WHERE SuperId = 10051
     AND DateOfTransaction <= '2019-12-31 23:59:59' and  InStatus = 'L';"""
 
 getdashboardcount = """	select 10 'TOTALREGISTRATIONS',5 'PRESENT',6 'LATE',8 'ABSENT',9 'leave'"""
+
+createNotificationForAll = """insert into [PROD].[Notification](superid,name,description,isactive,type)
+values({0},'{1}','{2}',1,2)"""
+
+createNotificationForSingle = """insert into [PROD].[Notification](superid,name,description,isactive,regid,type)
+values({0},'{2}','{3}',1,{1},1)"""

@@ -209,7 +209,12 @@ COMMIT"""
 
 
 
-approveleave = """Update Prod.Leaves Set Status = {0},UpdatedBy={2},UpdatedOn=GetDate(),comments = '{3}' Where Id = {1} """
+approveleave = """Update Prod.Leaves Set Status = {0},UpdatedBy={2},UpdatedOn=GetDate(),comments = '{3}' Where Id = {1} ;
+
+insert into [PROD].[Notification](superid,name,description,isactive,regid,type)
+values((select superid from [PROD].[Registration] where id = {2}),'Leave','Leave Approved',1,{2},1)
+
+"""
 
 
 addmobileAccess = """update [PROD].[Registration] set MobileAccess = 1 where id = {0};
